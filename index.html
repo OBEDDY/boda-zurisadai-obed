@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zurisadai & Obed • 29 Nov 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: #1A0408;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+    }
+
+    /* ── FONDO CON PARTÍCULAS DORADAS ── */
+    .fondo-particulas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particula {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #C9A84C;
+      border-radius: 50%;
+      opacity: 0;
+      animation: flotar var(--dur) ease-in-out var(--delay) infinite;
+    }
+
+    @keyframes flotar {
+      0%   { opacity: 0; transform: translateY(100vh) scale(0); }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+    }
+
+    /* ── CONTENIDO CENTRAL ── */
+    .contenido {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ── TEXTO SUPERIOR ── */
+    .texto-superior {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.7);
+      margin-bottom: 2rem;
+      animation: aparecer 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SOBRE ── */
+    .sobre-wrapper {
+      perspective: 1200px;
+      width: min(340px, 85vw);
+      height: min(240px, 60vw);
+      cursor: pointer;
+      position: relative;
+      animation: aparecer 1.5s ease 0.5s forwards;
+      opacity: 0;
+    }
+
+    .sobre {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    /* Cuerpo principal */
+    .sobre-cuerpo {
+      position: absolute;
+      inset: 0;
+      background: #FDFBF7;
+      border-radius: 4px;
+      box-shadow:
+        0 30px 80px rgba(0,0,0,0.6),
+        0 0 0 1px rgba(201,168,76,0.15);
+      overflow: hidden;
+    }
+
+    /* Triángulos laterales */
+    .sobre-cuerpo::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: calc(min(240px,60vw) * 0.5) 0 0 calc(min(340px,85vw) * 0.5);
+      border-color: transparent transparent transparent #F0EBE1;
+    }
+
+    .sobre-cuerpo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: calc(min(240px,60vw) * 0.5) calc(min(340px,85vw) * 0.5) 0 0;
+      border-color: transparent #F0EBE1 transparent transparent;
+    }
+
+    /* Triángulo inferior */
+    .sobre-bottom {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 calc(min(340px,85vw) * 0.5) calc(min(240px,60vw) * 0.46) calc(min(340px,85vw) * 0.5);
+      border-color: transparent transparent #E8E0D5 transparent;
+      z-index: 2;
+    }
+
+    /* Solapa superior — SE ABRE */
+    .sobre-solapa {
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: calc(min(240px,60vw) * 0.46) calc(min(340px,85vw) * 0.5) 0 calc(min(340px,85vw) * 0.5);
+      border-color: #F5F0E8 transparent transparent transparent;
+      z-index: 10;
+      transform-origin: top center;
+      transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 6px 8px rgba(0,0,0,0.2));
+    }
+
+    /* Sello de lacre */
+    .sello {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background: #58111A;
+      border-radius: 50%;
+      z-index: 15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 3px 12px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+      transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+    }
+
+    .sello::before {
+      content: '♥';
+      color: #C9A84C;
+      font-size: 22px;
+    }
+
+    /* Carta interior */
+    .carta-interior {
+      position: absolute;
+      bottom: 8px;
+      left: 16px;
+      right: 16px;
+      background: white;
+      border-radius: 2px;
+      padding: 20px 16px;
+      text-align: center;
+      z-index: 5;
+      transform: translateY(0px);
+      transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s,
+                  opacity 0.5s ease 0.4s;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.12);
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .carta-eyebrow {
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #C9A84C;
+    }
+
+    .carta-linea {
+      width: 30px;
+      height: 1px;
+      background: #C9A84C;
+      margin: 4px auto;
+    }
+
+    .carta-nombres {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      font-style: italic;
+      color: #58111A;
+      line-height: 1.3;
+    }
+
+    .carta-fecha {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: #6B6B6B;
+      text-transform: uppercase;
+    }
+
+    /* ── ESTADOS AL ABRIR ── */
+    .sobre-wrapper.abierto .sobre-solapa {
+      transform: rotateX(-200deg);
+
+
+    }
+
+    .sobre-wrapper.abierto .sello {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+       
+    }
+
+    .sobre-wrapper.abierto .carta-interior {
+      transform: translateY(-110px);
+      opacity: 1;
+
+       height: 120px;
+    }
+
+    /* ── HINT CLICK ── */
+    .click-hint {
+      margin-top: 2rem;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      transition: opacity 0.5s;
+      animation: aparecer 1.5s ease 1s forwards, parpadeHint 2s ease 2s infinite;
+      opacity: 0;
+    }
+
+    @keyframes parpadeHint {
+      0%,100% { opacity: 0.25; }
+      50%      { opacity: 0.6; }
+    }
+
+    /* ── BOTÓN VER INVITACIÓN ── */
+    .btn-ver {
+      margin-top: 2.5rem;
+      padding: 0.9rem 2.5rem;
+      background: transparent;
+      color: #C9A84C;
+      border: 1px solid rgba(201,168,76,0.4);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease, background 0.2s, border-color 0.2s;
+      pointer-events: none;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn-ver.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .btn-ver:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: rgba(201,168,76,0.8);
+    }
+
+    /* ── TRANSICIÓN A LA PÁGINA ── */
+    .cortina {
+      position: fixed;
+      inset: 0;
+      background: #1A0408;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+    .cortina.activa {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Fondo con partículas -->
+  <div class="fondo-particulas" id="particulas"></div>
+
+  <!-- Cortina de transición -->
+  <div class="cortina" id="cortina"></div>
+
+  <!-- Contenido principal -->
+  <div class="contenido">
+
+    <p class="texto-superior">Tienes una invitación especial</p>
+
+    <div class="sobre-wrapper" id="sobre" onclick="abrirSobre()">
+      <div class="sobre">
+        <div class="sobre-cuerpo"></div>
+        <div class="sobre-bottom"></div>
+        <div class="sobre-solapa"></div>
+        <div class="sello"></div>
+        <div class="carta-interior">
+          <span class="carta-eyebrow">Los invitamos a celebrar nuestra boda</span>
+          <div class="carta-linea"></div>
+          <p class="carta-nombres">Zurisadai<br>&amp; Obed</p>
+          <div class="carta-linea"></div>
+          <span class="carta-fecha">29 · Noviembre · 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="click-hint" id="hint">Toca la carta para abrir ♥</p>
+
+    <!-- Este botón lleva a tu boda.html -->
+    <a class="btn-ver" id="btn-ver" href="boda.html">
+      Ver invitación completa
+    </a>
+
+  </div>
+
+  <script>
+    // ── PARTÍCULAS DORADAS ──
+    const contenedor = document.getElementById('particulas');
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particula';
+      p.style.cssText = `
+        left: ${Math.random() * 100}%;
+        --dur: ${4 + Math.random() * 6}s;
+        --delay: ${Math.random() * 6}s;
+        width: ${1 + Math.random() * 3}px;
+        height: ${1 + Math.random() * 3}px;
+        opacity: 0;
+      `;
+      contenedor.appendChild(p);
+    }
+
+    // ── ABRIR SOBRE ──
+    let abierto = false;
+
+    function abrirSobre() {
+      if (abierto) return;
+      abierto = true;
+
+      const sobre  = document.getElementById('sobre');
+      const hint   = document.getElementById('hint');
+      const btnVer = document.getElementById('btn-ver');
+
+      // Abrir el sobre
+      sobre.classList.add('abierto');
+
+      // Ocultar hint
+      hint.style.opacity = '0';
+      hint.style.animation = 'none';
+
+      // Mostrar botón después de que termine la animación
+      setTimeout(() => {
+        btnVer.classList.add('visible');
+      }, 1400);
+    }
+
+    // ── TRANSICIÓN SUAVE A BODA.HTML ──
+    document.getElementById('btn-ver').addEventListener('click', function(e) {
+      e.preventDefault();
+      const cortina = document.getElementById('cortina');
+      cortina.classList.add('activa');
+      setTimeout(() => {
+        window.location.href = 'boda.html';
+      }, 800);
+    });
+  </script>
+
+</body>
+</html>
