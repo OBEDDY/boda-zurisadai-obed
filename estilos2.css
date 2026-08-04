@@ -1007,3 +1007,18 @@ html.reveal-ready .reveal { opacity: 1; transform: none; }
   color: var(--gris-soft);
   line-height: 1.8;
 }
+
+/* ── LINKS GENERALES — quita el azul por defecto ── */
+a {
+  color: var(--oro);           /* color vino en vez de azul */
+  text-decoration: var(--oro);        /* quita el subrayado */
+  transition: color 0.2s;       /* transición suave al pasar el mouse */
+}
+
+a:hover {
+  color: var(--oro);            /* cambia a dorado al pasar el mouse */
+}
+
+a:visited {
+  color: var(--vino-deep);           /* cuando ya fue visitado, sigue vino */
+}
