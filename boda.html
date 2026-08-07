@@ -138,17 +138,15 @@
         <span class="detalle-titulo">Lugar</span>
         <span class="detalle-valor">Salón del Reino</span>
         <p class="detalle-sub">
-          <a href="https://www.google.com/maps/place/28%C2%B035'34.4%22N+105%C2%B056'03.5%22W/@28.5928889,-105.9368805,17z" target="_blank">
-            Calle 32 A #309, 35 metros de la carretera 46,
-            31650 San Guillermo (Santa Elena), Chih.
+          <a href="https://www.google.com/maps/place/28%C2%B035'34.4%22N+105%C2%B056'03.5%22W/@28.5928889,-105.9368805,17z" target="_blank" class="btn-mapa">
+            Ver mapa
           </a>
         </p>
         <br>
         <span class="detalle-valor">Salón de eventos</span>
         <p class="detalle-sub">
-          <a href="https://maps.google.com/?q=Salon+de+eventos+mariana+bonita" target="_blank">
-            Salón Mariana Bonita, Sierra de Pedernales 10602,
-            Sierra Azul, 31384 Chihuahua, Chih.
+          <a href="https://maps.google.com/?q=Salon+de+eventos+mariana+bonita" target="_blank" class="btn-mapa">
+            Ver mapa 
           </a>
         </p>
       </div>
@@ -234,7 +232,8 @@
     <p class="body-text">
       El mejor regalo es compartir este día con las personas que más queremos.
       Si deseas obsequiarnos algo, una aportación en efectivo será bienvenida
-      y nos ayudará a comenzar esta nueva aventura juntos.
+      y nos ayudará a comenzar esta nueva aventura juntos. 
+
     </p>
 
     <div class="regalo-card reveal">
@@ -250,7 +249,8 @@
       </div>
       <h3 class="regalo-card-titulo">Lluvia de sobres</h3>
       <p class="regalo-card-texto">
-        Si deseas hacernos un regalo, puedes hacerlo en efectivo el día del evento.
+        Si deseas hacernos un regalo, puedes hacerlo en efectivo el día del evento o mediante transferencia bancaria a la siguiente cuenta:
+        <br><br>
         Tu presencia ya es el mejor obsequio para nosotros. ♥
       </p>
       <div class="regalo-separador">
@@ -263,8 +263,47 @@
       </p>
     </div>
   </div>
-</section>
 
+    <!-- Tarjeta bancaria -->
+   <div class="tarjeta-bancaria">
+   <div class="tarjeta-chip"></div>
+   <div class="tarjeta-numero" id="numero-cuenta-1">4152 3143 8611 8833</div>
+   <div class="tarjeta-bottom">
+
+
+    <div>
+      <span class="tarjeta-label">Titular</span>
+      <span class="tarjeta-nombre">Obed Torres</span>
+     </div>
+     <span class="tarjeta-banco">BBVA</span>
+  </div>
+</div>
+    
+  <button class="btn-copiar-numero" onclick="copiarNumero('numero-cuenta-1', this)">
+    Copiar número de cuenta
+  </button>
+
+
+<!-- Tarjeta bancaria 2  -->
+   <div class="tarjeta-bancaria">
+   <div class="tarjeta-chip"></div>
+   <div class="tarjeta-numero" id="numero-cuenta-2">4152 3145 8964 3058</div>
+   <div class="tarjeta-bottom">
+
+
+    <div>
+      <span class="tarjeta-label">Titular</span>
+      <span class="tarjeta-nombre">Zurisadai Miranda Saenz</span>
+     </div>
+     <span class="tarjeta-banco">BBVA</span>
+  </div>
+</div>
+    
+<button class="btn-copiar-numero" onclick="copiarNumero('numero-cuenta-2', this)">
+  Copiar número de cuenta
+</button>
+
+</section>
 
 <!-- ── FOTO DUO ── -->
 <div class="foto-section">
@@ -302,7 +341,10 @@
       <div>
         <span class="historia-year">El primer encuentro</span>
         <p class="historia-texto">Cuando nuestros caminos se cruzaron</p>
-        <p class="historia-desc">Escribe aquí cómo se conocieron.</p>
+        <p class="historia-desc"> Nuestros caminos no se cruzaron por casualidad; 
+          siempre caminaron en la misma dirección. Crecimos viéndonos desde niños, 
+          sin sospechar que el paso del tiempo transformaría esa cercanía de toda la 
+          vida en nuestra historia más bonita.</p>
       </div>
     </div>
 
@@ -314,7 +356,9 @@
       <div>
         <span class="historia-year">El noviazgo</span>
         <p class="historia-texto">Cuando supimos que era para siempre</p>
-        <p class="historia-desc">Cuéntales momentos especiales durante el noviazgo.</p>
+        <p class="historia-desc">​El noviazgo fue el espacio donde nuestra historia tomó un nuevo significado. 
+          Entre risas, conversaciones profundas y metas compartidas, 
+          nos dimos cuenta de que nuestro lugar seguro siempre había sido el uno con el otro.</p>
       </div>
     </div>
 
@@ -325,7 +369,10 @@
       <div>
         <span class="historia-year">La propuesta · 2026</span>
         <p class="historia-texto">El día que dijo que sí</p>
-        <p class="historia-desc">Comparte cómo fue la propuesta de matrimonio.</p>
+        <p class="historia-desc">​Un día inolvidable y cargado de muchísimas emociones. 
+          Entre la complicidad de nuestras familias y amigos, ¡parecía que todo el mundo sabía lo que iba a pasar,
+           excepto la novia! El secreto se guardó a la perfección, 
+          la sorpresa fue hermosa y la respuesta no pudo ser otra: un emocionado '¡sí!</p>
       </div>
     </div>
   </div>
@@ -451,8 +498,8 @@
   <p class="footer-names">Zurisadai & Obed</p>
   <p class="footer-date">29 · 11 · 2026</p>
   <div class="footer-divider"></div>
-  <p class="footer-copy">Con amor, los esperamos ♥</p>
-</footer>
+  <p class="footer-copy"> los esperamos ♥</p>
+</footer> 
 
 <script src="funcion2.js"></script>
 </body>

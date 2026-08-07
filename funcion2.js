@@ -1,4 +1,4 @@
-// ── CUENTA REGRESIVA ──
+  // ── CUENTA REGRESIVA ──
 function actualizarContador() {
   const boda  = new Date('2026-11-29T18:00:00-06:00');
   const ahora = new Date();
@@ -106,3 +106,35 @@ document.querySelector('#rsvp-form').addEventListener('submit', function(e) {
     alert('Sin conexión. Por favor intenta de nuevo.');
   });
 });
+
+
+// ── COPIAR NÚMERO DE CUENTA ──
+function copiarNumero(idNumero, btn) {
+  const numero = document.getElementById(idNumero).textContent.trim();
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(numero).then(() => {
+      mostrarCopiado(btn);
+    });
+  } else {
+    const input = document.createElement('input');
+    input.value = numero;
+    input.style.position = 'fixed';
+    input.style.opacity  = '0';
+    document.body.appendChild(input);
+    input.focus();
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    mostrarCopiado(btn);
+  }
+}
+
+function mostrarCopiado(btn) {
+  btn.textContent = '¡Copiado! ♥';
+  btn.classList.add('copiado');
+  setTimeout(() => {
+    btn.textContent = 'Copiar número de cuenta';
+    btn.classList.remove('copiado');
+  }, 2000);
+}

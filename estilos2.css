@@ -1008,17 +1008,187 @@ html.reveal-ready .reveal { opacity: 1; transform: none; }
   line-height: 1.8;
 }
 
-/* ── LINKS GENERALES — quita el azul por defecto ── */
-a {
-  color: var(--oro);           /* color vino en vez de azul */
-  text-decoration: var(--oro);        /* quita el subrayado */
-  transition: color 0.2s;       /* transición suave al pasar el mouse */
+/* ── LINKS GENERALES — botones ── */
+.btn-mapa {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--vino);
+  color: var(--blanco);
+  text-decoration: none;
+  font-family: var(--body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.2s, transform 0.1s;
 }
 
-a:hover {
-  color: var(--oro);            /* cambia a dorado al pasar el mouse */
+.btn-mapa:hover {
+  background: var(--vino-deep);
+  color: var(--blanco);
+  transform: scale(1.02);
 }
 
-a:visited {
-  color: var(--vino-deep);           /* cuando ya fue visitado, sigue vino */
+
+
+/* ── TARJETA BANCARIA ── */
+.tarjeta-bancaria {
+  width: 320px;
+  height: 180px;
+  background: linear-gradient(135deg, #58111A 0%, #3A0810 50%, #6B1525 100%);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(88, 17, 26, 0.4);
+  margin: 2rem auto 0;
+  cursor: default;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Círculos decorativos de fondo */
+.tarjeta-bancaria::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.1);
+}
+
+.tarjeta-bancaria::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -20px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.06);
+}
+
+/* Efecto hover — se eleva */
+.tarjeta-bancaria:hover {
+  transform: translateY(-4px) rotate(1deg);
+  box-shadow: 0 30px 60px rgba(88, 17, 26, 0.5);
+}
+
+/* Chip dorado */
+.tarjeta-chip {
+  width: 36px;
+  height: 28px;
+  background: linear-gradient(135deg, #C9A84C, #E8C96A);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Líneas del chip */
+.tarjeta-chip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%);
+}
+
+.tarjeta-chip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.2);
+  transform: translateX(-50%);
+}
+
+/* Número de tarjeta */
+.tarjeta-numero {
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.2em;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Parte inferior */
+.tarjeta-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+/* Label pequeño */
+.tarjeta-label {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 3px;
+  font-family: var(--body);
+}
+
+/* Nombre del titular */
+.tarjeta-nombre {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: var(--body);
+  font-weight: 400;
+}
+
+/* Nombre del banco */
+.tarjeta-banco {
+  font-family: var(--display);
+  font-size: 16px;
+  color: #C9A84C;
+  font-style: italic;
+}
+
+
+/* ── BOTÓN COPIAR ── */
+.btn-copiar-numero {
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.7rem 1.8rem;
+  background: transparent;
+  color: var(--vino);
+  border: 1px solid rgba(88, 17, 26, 0.3);
+  border-radius: 4px;
+  font-family: var(--body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-copiar-numero:hover {
+  background: var(--vino);
+  color: var(--blanco);
+  border-color: var(--vino);
+}
+
+/* Estado copiado — cambia a dorado */
+.btn-copiar-numero.copiado {
+  background: var(--oro);
+  color: var(--blanco);
+  border-color: var(--oro);
 }
